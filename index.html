@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bucin - Rionita Oktaviani</title>
+
+  <!-- MUSIK (DITARUH DI ATAS) -->
+  <audio id="music" src="lagu.mp3"></audio>
+
+  <style>
+    body{
+      margin:0;
+      font-family:Arial, sans-serif;
+      background:linear-gradient(135deg,#FFDEE9,#B5FFFC);
+      padding:20px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .card{
+      background:rgba(255,255,255,0.85);
+      padding:25px;
+      border-radius:20px;
+      max-width:900px;
+      width:100%;
+      box-shadow:0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    h1{
+      margin-top:0;
+      font-size:38px;
+      text-align:center;
+    }
+
+    .message{
+      background:rgba(255,92,138,0.1);
+      padding:15px;
+      border-radius:10px;
+      margin-bottom:20px;
+      text-align:center;
+    }
+
+    .btn{
+      padding:10px 18px;
+      border-radius:10px;
+      cursor:pointer;
+      font-weight:bold;
+      border:0;
+      background:linear-gradient(90deg,#ff6a9c,#ff8fbc);
+      color:white;
+      display:block;
+      margin:0 auto 20px auto;
+    }
+
+    .foto-grid{
+      display:none;
+      grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+      gap:14px;
+    }
+
+    .foto{
+      width:100%;
+      border-radius:14px;
+      box-shadow:0 6px 15px rgba(0,0,0,0.15);
+      opacity:0;
+      transform:scale(0.8);
+      transition:0.6s ease;
+    }
+
+    .foto.show{
+      opacity:1;
+      transform:scale(1);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Rionita Oktaviani</h1>
+
+    <div class="message" id="msg">
+      Hai Rionita, ini kejutan kecil buat kamu 💗
+    </div>
+
+    <button class="btn" id="kejutan">Kirim Kejutan</button>
+
+    <div id="fotoGrid" class="foto-grid"></div>
+  </div>
+
+<script>
+  const btn = document.getElementById("kejutan");
+  const msg = document.getElementById("msg");
+  const fotoGrid = document.getElementById("fotoGrid");
+  const music = document.getElementById("music");
+
+  const fotoList = [
+    "foto1jpg.jpg",
+    "foto2.jpg",
+    "foto3.jpg",
+    "foto4.jpg"
+  ];
+
+  btn.addEventListener("click", ()=>{
+
+    msg.textContent = "Kejutan buat kamu ✨ Semua foto cantiknya muncul!";
+
+    // PLAY MUSIK SAAT TOMBOL DIKLIK
+    music.play();
+
+    fotoGrid.style.display = "grid";
+    fotoGrid.innerHTML = "";
+
+    fotoList.forEach((src, index)=>{
+      const img = document.createElement("img");
+      img.src = src;
+      img.className = "foto";
+      fotoGrid.appendChild(img);
+
+      setTimeout(()=> img.classList.add("show"), 120 * index);
+    });
+  });
+</script>
+
+</body>
+</html>
